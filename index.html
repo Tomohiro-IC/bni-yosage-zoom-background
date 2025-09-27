@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BNI 第２６期 よさげチャプター Zoom背景画像作成ツール</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-area">
+                    <h1> 第２６期  よさげチャプター</h1>
+                </div>
+                <h2 class="tool-title">Zoom背景画像生成ツール</h2>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="form-section">
+                <div class="form-container">
+                    <form id="backgroundForm" class="background-form">
+                        <div class="form-group">
+                            <label for="memberName" class="form-label">
+                                <i class="fas fa-user"></i>
+                                お名前 <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="memberName" 
+                                name="memberName" 
+                                class="form-input" 
+                                placeholder="山田 太郎"
+                                maxlength="20"
+                                required
+                            >
+                            <small class="form-help">最大20文字まで入力できます</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="businessCategory" class="form-label">
+                                <i class="fas fa-briefcase"></i>
+                                ビジネスカテゴリ <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="businessCategory" 
+                                name="businessCategory" 
+                                class="form-input" 
+                                placeholder="ITコンサルティング"
+                                maxlength="30"
+                                required
+                            >
+                            <small class="form-help">最大30文字まで入力できます</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personalImage" class="form-label">
+                                <i class="fas fa-image"></i>
+                                個人画像 <span class="optional">（任意）</span>
+                            </label>
+                            <div class="image-upload-wrapper">
+                                <input 
+                                    type="file" 
+                                    id="personalImage" 
+                                    name="personalImage" 
+                                    class="form-input-file" 
+                                    accept="image/*"
+                                >
+                                <label for="personalImage" class="file-upload-label">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span>画像を選択またはドラッグ&ドロップ</span>
+                                </label>
+                                <div id="imagePreview" class="image-preview" style="display: none;">
+                                    <img id="previewImg" src="" alt="プレビュー">
+                                    <button type="button" class="btn-remove" id="removeImage">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <small class="form-help">JPG、PNG、GIF形式の画像ファイル（最大5MB）</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobTitle" class="form-label">
+                                <i class="fas fa-id-badge"></i>
+                                役職／役割 <span class="optional">（任意）</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="jobTitle" 
+                                name="jobTitle" 
+                                class="form-input" 
+                                placeholder="ビジターホスト"
+                                maxlength="20"
+                            >
+                            <small class="form-help">最大20文字まで入力できます</small>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="generateBtn">
+                                <i class="fas fa-magic"></i>
+                                背景画像を生成
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <div class="preview-container">
+                    <h3 class="section-title">プレビュー</h3>
+                    <div class="canvas-wrapper">
+                        <canvas id="backgroundCanvas" width="1920" height="1080" class="preview-canvas"></canvas>
+                    </div>
+                    <div class="preview-actions" id="previewActions" style="display: none;">
+                        <button type="button" class="btn btn-success" id="downloadBtn">
+                            <i class="fas fa-download"></i>
+                            画像をダウンロード
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 BNI よさげチャプター - Zoom背景画像生成ツール</p>
+        </footer>
+    </div>
+
+    <!-- Loading Modal -->
+    <div id="loadingModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+            <p>背景画像を生成中...</p>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
